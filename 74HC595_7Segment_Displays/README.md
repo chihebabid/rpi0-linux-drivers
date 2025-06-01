@@ -34,6 +34,7 @@ mydisplay@0 {
 	digit2-gpio = <&gpio 26 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
+```
 
 ## 🛠️ Wiring and Hardware Setup
 
