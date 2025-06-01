@@ -34,3 +34,26 @@ mydisplay@0 {
 	digit2-gpio = <&gpio 26 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
+
+## 🛠️ Wiring and Hardware Setup
+
+The following setup uses a Raspberry Pi Zero, a 74HC595 shift register, and two common cathode 7-segment displays:
+
+- **74HC595 pins:**
+  - **DS (Serial Data)** → GPIO16 (data)
+  - **SHCP (Clock)** → GPIO21 (clk)
+  - **STCP (Latch)** → GPIO20 (latch)
+  - **Q0–Q6** → Connected to the segments (A to G) of both displays
+  - **Q7** → Not connected or used for dot segment if needed
+- **7-Segment Displays:**
+  - Both displays share the same segment inputs (A–G)
+  - **Digit 1 Enable (common cathode)** → GPIO19 (digit1)
+  - **Digit 2 Enable (common cathode)** → GPIO26 (digit2)
+- **Multiplexing Logic:**
+  - A kernel thread alternates between enabling digit1 and digit2 rapidly while shifting corresponding values into the 74HC595.
+
+### 🔌 Circuit Diagram
+
+![Wiring diagram for 74HC595 and dual 7-segment display](img/rpi0_7segment_setup.png)
+
+> **Note:** Resistors are used between the 74HC595 outputs and the segment pins to limit current. Common values: 220Ω–330Ω.
