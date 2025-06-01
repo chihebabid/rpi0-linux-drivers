@@ -27,6 +27,8 @@ These labs aim to provide a practical, step-by-step introduction to:
 
 To start working with the labs:
 
-1. Clone the repository:
+Clone the repository:
    ```bash
-   git clone https://github.com/chihebabid/Linux-Device-Drivers-Development-Labs.git
+   git clone https://github.com/chihebabid/rpi0-linux-drivers.git
+   ```
+   
