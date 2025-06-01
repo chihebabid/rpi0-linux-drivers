@@ -19,7 +19,7 @@ Add the following to your Device Tree source (DTS) to declare the sensor:
 ```dts
 dht11@0 {
     compatible = "training,dht11";
-    data-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
+    data-gpio = <&gpio 17 GPIO_ACTIVE_HIGH>;
     status = "okay";
 };
 ```
