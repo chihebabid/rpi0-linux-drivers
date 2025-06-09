@@ -42,14 +42,6 @@ Read distance in centimeters (with decimal point):
 cat /dev/hc-sr04  # Output: "Distance : 15.3"
 ```
 
-> Only the temperature value is returned for now. Humidity is available internally.
-
-## ⚙️ Module Design
-
-- **Bit-banging Protocol:** Follows the DHT11 protocol using precise microsecond timing with `ktime` and polling.
-- **Parity Check:** Ensures data integrity using checksum validation.
-- **GPIO Handling:** Uses `devm_gpiod_get()` to safely acquire and release the GPIO.
-
 ### Internal Workflow
 
 1. Send 10μs high pulse to trigger pin
@@ -68,4 +60,6 @@ Tested on **Linux kernel 6.12+** using Raspberry Pi Zero and GPIO descriptor API
 $ cat /dev/hc-sr04
 Distance : 24.7
 ```
+
+> Distance is expressed in cm
 
