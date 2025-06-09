@@ -27,6 +27,9 @@ hc_sr04 {
 ```
 
 
+## 🔌 Circuit Diagram
+
+![Wiring diagram for 74HC595 and dual 7-segment display](img/RPIDistanceHC-SR04.png)
 
 ## 📂 Character Device Usage
 
