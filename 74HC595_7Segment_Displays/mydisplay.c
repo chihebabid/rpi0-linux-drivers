@@ -58,23 +58,6 @@ static struct platform_driver pf_driver = {
 	}
 };
 
-
-
-
-
-
-
-static int __init pf_init(void) {
-    return platform_driver_register(&pf_driver);
-}
-
-static void __exit pf_exit(void) {
-    platform_driver_unregister(&pf_driver);
-}
-
-module_init(pf_init);
-module_exit(pf_exit);
-
 static int pf_probe(struct platform_device *pdev) {
 	int ret_val;
 	struct mydev_misc_t *mydev;
@@ -204,20 +187,18 @@ static void update(struct mydev_misc_t  *my_misc_dev) {
 static int manage_digits(void *arg) {
 	struct mydev_misc_t  *my_misc_dev=(struct mydev_misc_t  *)arg;
 	while (!kthread_should_stop()) {
-		gpiod_set_value(my_misc_dev->gpio_digit1,0);
-		gpiod_set_value(my_misc_dev->gpio_digit2,0);
 		prepare(my_misc_dev);
 		write8Bits(my_misc_dev,digit_to_7segments(my_misc_dev->digit2));
-		update(my_misc_dev);
 		gpiod_set_value(my_misc_dev->gpio_digit1,0);
+		gpiod_set_value(my_misc_dev->gpio_digit2,0);
+		update(my_misc_dev);
 		gpiod_set_value(my_misc_dev->gpio_digit2,1);
 		usleep_range(250, 350);
-		gpiod_set_value(my_misc_dev->gpio_digit1,0);
-		gpiod_set_value(my_misc_dev->gpio_digit2,0);
 		prepare(my_misc_dev);
 		write8Bits(my_misc_dev,digit_to_7segments(my_misc_dev->digit1));
-		update(my_misc_dev);
+		gpiod_set_value(my_misc_dev->gpio_digit1,0);
 		gpiod_set_value(my_misc_dev->gpio_digit2,0);
+		update(my_misc_dev);
 		gpiod_set_value(my_misc_dev->gpio_digit1,1);
 		usleep_range(250, 350);
 	}
@@ -242,6 +223,17 @@ static u8 digit_to_7segments(u8 d) {
 	return (d < 10) ? seg_table[d] : 0b01111001; // Default 'E' for error
 }
 
+
+static int __init pf_init(void) {
+    return platform_driver_register(&pf_driver);
+}
+
+static void __exit pf_exit(void) {
+    platform_driver_unregister(&pf_driver);
+}
+
+module_init(pf_init);
+module_exit(pf_exit);
 
 
 MODULE_LICENSE("GPL");
