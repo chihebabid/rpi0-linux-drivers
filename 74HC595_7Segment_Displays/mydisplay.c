@@ -205,16 +205,20 @@ static int manage_digits(void *arg) {
 	struct mydev_misc_t  *my_misc_dev=(struct mydev_misc_t  *)arg;
 	while (!kthread_should_stop()) {
 		gpiod_set_value(my_misc_dev->gpio_digit1,0);
-		gpiod_set_value(my_misc_dev->gpio_digit2,1);
+		gpiod_set_value(my_misc_dev->gpio_digit2,0);
 		prepare(my_misc_dev);
 		write8Bits(my_misc_dev,digit_to_7segments(my_misc_dev->digit2));
 		update(my_misc_dev);
+		gpiod_set_value(my_misc_dev->gpio_digit1,0);
+		gpiod_set_value(my_misc_dev->gpio_digit2,1);
 		usleep_range(250, 350);
+		gpiod_set_value(my_misc_dev->gpio_digit1,0);
 		gpiod_set_value(my_misc_dev->gpio_digit2,0);
-		gpiod_set_value(my_misc_dev->gpio_digit1,1);
 		prepare(my_misc_dev);
 		write8Bits(my_misc_dev,digit_to_7segments(my_misc_dev->digit1));
 		update(my_misc_dev);
+		gpiod_set_value(my_misc_dev->gpio_digit2,0);
+		gpiod_set_value(my_misc_dev->gpio_digit1,1);
 		usleep_range(250, 350);
 	}
 	return 0;
