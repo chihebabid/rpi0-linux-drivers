@@ -161,4 +161,4 @@ module_exit(pf_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Chiheb");
-MODULE_DESCRIPTION("Simple platform driver using PWM");
+MODULE_DESCRIPTION("Simple platform driver to control a servo motor");
