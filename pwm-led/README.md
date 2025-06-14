@@ -23,11 +23,11 @@ The driver requires a PWM-capable device configured in the Device Tree with:
 
 ```dts
 pwm_led@0 {
-			compatible = "training,pwm_led";
-			pinctrl-names = "default";
-			label = "pwm_led0";
-			pwms = <&pwm 0 1000000 0>;
-			status = "okay";
+    compatible = "training,pwm_led";
+    pinctrl-names = "default";
+    label = "pwm_led0";
+    pwms = <&pwm 0 1000000 0>;
+    status = "okay";
 };
 
 &pwm {
@@ -37,8 +37,8 @@ pwm_led@0 {
 };
 
 pwm_pins: pwm_pins {
-		brcm,pins = <18>;
-		brcm,function = <BCM2835_FSEL_ALT5>;
+    brcm,pins = <18>;
+    brcm,function = <BCM2835_FSEL_ALT5>;
 };
 ```
 
