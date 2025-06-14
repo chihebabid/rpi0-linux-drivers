@@ -25,7 +25,7 @@ The driver requires a PWM-capable device configured in the Device Tree with:
 pwm_led@0 {
 			compatible = "training,pwm_led";
 			pinctrl-names = "default";
-			label = "pwm_led@0";
+			label = "pwm_led0";
 			pwms = <&pwm 0 1000000 0>;
 			status = "okay";
 };
