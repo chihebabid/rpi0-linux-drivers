@@ -10,6 +10,16 @@ static u32 MIN_DUTY_NS=500000;
 static u32 MAX_DUTY_NS=2500000;
 static u64 PERIOD_NS=20000000;
 
+module_param(MIN_DUTY_NS, uint, 0644);
+MODULE_PARM_DESC(MIN_DUTY_NS, "Minimum duty cycle in nanoseconds");
+
+module_param(MAX_DUTY_NS, uint, 0644);
+MODULE_PARM_DESC(MAX_DUTY_NS, "Maximum duty cycle in nanoseconds");
+
+module_param(PERIOD_NS, ullong, 0644);
+MODULE_PARM_DESC(PERIOD_NS, "PWM signal period in nanoseconds");
+
+
 struct mypwm_misc_t {
 	struct miscdevice mymisc_device;
 	const char *device_name;
