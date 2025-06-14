@@ -42,4 +42,10 @@ pwm_pins: pwm_pins {
 };
 ```
 
+## Usage
 
+o control the LED brightness, simply write a percentage value (from 0 to 100) to the device. This value determines the PWM duty cycle and thus the LED brightness:
+
+```bash
+echo 75 > /dev/pwm_led0
+```
